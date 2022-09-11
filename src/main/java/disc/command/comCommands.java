@@ -9,7 +9,6 @@ import mindustry.gen.Call;
 
 import mindustry.gen.Groups;
 import mindustry.gen.Player;
-import mindustry.net.Administration;
 import mindustry.world.modules.ItemModule;
 import org.javacord.api.entity.channel.GroupChannelUpdater;
 import org.javacord.api.entity.message.MessageBuilder;
@@ -32,74 +31,6 @@ public class comCommands implements MessageCreateListener {
                 if (event.getMessageAuthor().asUser().get().getRoles(guild).contains(role)) {
                     String[] msg = (event.getMessageContent().replace('\n', ' ')).split("\\s+", 2);
                     Call.sendMessage("[scarlet]Mod Chat >[] " + msg[1].trim());
-                }
-                else {
-                    event.getChannel().sendMessage("You do not have permission to use this command");
-                }
-                break;
-            case "..ban":
-                Role role = guild.getRoleById(987815204500951092);
-                if (event.getMessageAuthor().asUser().get().getRoles(guild).contains(role)) {
-                    String[] msg = (event.getMessageContent().replace('\n', ' ')).split("\\s+", 2);
-                    Player player = Groups.player.find(p -> p.name.equalsIgnoreCase(msg[1].trim()));
-                    if (player != null) {
-                        netServer.admins.banPlayer(target.uuid());
-                        event.getChannel().sendMessage("Player " + msg[1].trim() + " has been banned");
-                    }
-                    else {
-                        event.getChannel().sendMessage("Player " + msg[1].trim() + " not found");
-                    }
-                }
-                else {
-                    event.getChannel().sendMessage("You do not have permission to use this command");
-                }
-                break;
-            case "..kick":
-                Role role = guild.getRoleById(987815204500951092);
-                if (event.getMessageAuthor().asUser().get().getRoles(guild).contains(role)) {
-                    String[] msg = (event.getMessageContent().replace('\n', ' ')).split("\\s+", 2);
-                    Player player = Groups.player.find(p -> p.name.equalsIgnoreCase(msg[1].trim()));
-                    if (player != null) {
-                        player.con.kick("You have been kicked from the server");
-                        event.getChannel().sendMessage("Player " + msg[1].trim() + " has been kicked");
-                    }
-                    else {
-                        event.getChannel().sendMessage("Player " + msg[1].trim() + " not found");
-                    }
-                }
-                else {
-                    event.getChannel().sendMessage("You do not have permission to use this command");
-                }
-                break;
-            case "..admin":
-                Role role = guild.getRoleById(805385351253327893);
-                if (event.getMessageAuthor().asUser().get().getRoles(guild).contains(role)) {
-                    String[] msg = (event.getMessageContent().replace('\n', ' ')).split("\\s+", 2);
-                    Player player = Groups.player.find(p -> p.name.equalsIgnoreCase(msg[1].trim()));
-                    if (player != null) {
-                        netServer.admins.adminPlayer(target.uuid());
-                        event.getChannel().sendMessage("Player " + msg[1].trim() + " has been made admin");
-                    }
-                    else {
-                        event.getChannel().sendMessage("Player " + msg[1].trim() + " not found");
-                    }
-                }
-                else {
-                    event.getChannel().sendMessage("You do not have permission to use this command");
-                }
-                break;
-            case "..unadmin":
-                Role role = guild.getRoleById(805385351253327893);
-                if (event.getMessageAuthor().asUser().get().getRoles(guild).contains(role)) {
-                    String[] msg = (event.getMessageContent().replace('\n', ' ')).split("\\s+", 2);
-                    Player player = Groups.player.find(p -> p.name.equalsIgnoreCase(msg[1].trim()));
-                    if (player != null) {
-                        netServer.admins.unAdminPlayer(target.uuid());
-                        event.getChannel().sendMessage("Player " + msg[1].trim() + " has been unadmined");
-                    }
-                    else {
-                        event.getChannel().sendMessage("Player " + msg[1].trim() + " not found");
-                    }
                 }
                 else {
                     event.getChannel().sendMessage("You do not have permission to use this command");
