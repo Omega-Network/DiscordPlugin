@@ -23,6 +23,10 @@ import static disc.utilmethods.*;
 
 public class comCommands implements MessageCreateListener {
     private discordPlugin mainData;
+    public comCommands(discordPlugin _data){
+        this.mainData = _data;
+    }
+
     @Override
     public void onMessageCreate(MessageCreateEvent event){
         String[] incoming_msg = event.getMessageContent().split("\\s+");

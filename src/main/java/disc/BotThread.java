@@ -22,7 +22,7 @@ public class BotThread extends Thread{
         mainData = _mainData;
 
         //communication commands
-        api.addMessageCreateListener(new comCommands());
+        api.addMessageCreateListener(new comCommands(mainData));
         //server manangement commands
         api.addMessageCreateListener(new serverCommands(mainData));
         api.addMessageCreateListener(new mapCommands(mainData));
