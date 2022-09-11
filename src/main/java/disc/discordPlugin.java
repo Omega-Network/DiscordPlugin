@@ -28,6 +28,7 @@ import org.json.JSONTokener;
 import java.awt.Color;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 import static disc.discConstants.*;
 import static disc.utilmethods.*;
@@ -35,7 +36,7 @@ import static disc.utilmethods.*;
 public class discordPlugin extends Plugin {
     private final long CDT = 300L;
     private DiscordApi api = null;
-    private ObjectMap<Long, String> cooldowns = new ObjectMap<>(); //uuid
+    private final ObjectMap<Long, String> cooldowns = new ObjectMap<>(); //uuid
 
 
     private boolean invalidConfig = false;
@@ -43,7 +44,7 @@ public class discordPlugin extends Plugin {
     public ObjectMap<String, TextChannel> discChannels = new ObjectMap<>();
 
     //private JSONObject config;
-    private String totalPath;
+    private final String totalPath;
     public String servername;
 
 
@@ -81,9 +82,13 @@ public class discordPlugin extends Plugin {
         //live chat
         TextChannel tc = discChannels.get("live_chat_channel_id");
         if (tc != null) {
-            Events.on(EventType.PlayerChatEvent.class, event -> {
-                tc.sendMessage("**" + event.player.name.replace('*', '+') + "**: " + event.message);
-            });
+            Events.on(EventType.PlayerChatEvent.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "**: " + event.message));
+            Events.on(EventType.PlayerLeave.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "**: " + "has Disconnected"));
+            Events.on(EventType.PlayerJoin.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "**: " + "has Connected"));
+            Events.on(EventType.PlayerBanEvent.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "**: " + "has been Banned"));
+            Events.on(EventType.PlayerUnbanEvent.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "**: " + "has been Unbanned"));
+            Events.on(EventType.PlayerIpBanEvent.class, event -> tc.sendMessage("**" + event.ip.replace('*', '+') + "**: " + "has been Banned"));
+            Events.on(EventType.PlayerIpUnbanEvent.class, event -> tc.sendMessage("**" + event.ip.replace('*', '+') + "**: " + "has been Unbanned"));
         }
     }
 
@@ -117,8 +122,7 @@ public class discordPlugin extends Plugin {
                 for (Long key : cooldowns.keys()) {
                     if (key + CDT < System.currentTimeMillis() / 1000L) {
                         cooldowns.remove(key);
-                        continue;
-                    } else if (player.uuid() == cooldowns.get(key)) {
+                    } else if (Objects.equals(player.uuid(), cooldowns.get(key))) {
                         player.sendMessage("[scarlet]This command is on a 5 minute cooldown!");
                         return;
                     }
