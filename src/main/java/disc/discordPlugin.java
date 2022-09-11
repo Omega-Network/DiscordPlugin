@@ -83,12 +83,12 @@ public class discordPlugin extends Plugin {
         TextChannel tc = discChannels.get("live_chat_channel_id");
         if (tc != null) {
             Events.on(EventType.PlayerChatEvent.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "**: " + event.message));
-            Events.on(EventType.PlayerLeave.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "**: " + "has Disconnected"));
-            Events.on(EventType.PlayerJoin.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "**: " + "has Connected"));
-            Events.on(EventType.PlayerBanEvent.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "**: " + "has been Banned"));
-            Events.on(EventType.PlayerUnbanEvent.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "**: " + "has been Unbanned"));
-            Events.on(EventType.PlayerIpBanEvent.class, event -> tc.sendMessage("**" + event.ip.replace('*', '+') + "**: " + "has been Banned"));
-            Events.on(EventType.PlayerIpUnbanEvent.class, event -> tc.sendMessage("**" + event.ip.replace('*', '+') + "**: " + "has been Unbanned"));
+            Events.on(EventType.PlayerLeave.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "*has Disconnected*"));
+            Events.on(EventType.PlayerJoin.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "*has Connected*"));
+            Events.on(EventType.PlayerBanEvent.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "*has been Banned*"));
+            Events.on(EventType.PlayerUnbanEvent.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "*has been Unbanned*"));
+            Events.on(EventType.PlayerIpBanEvent.class, event -> tc.sendMessage("**" + event.ip.replace('*', '+') + "** " + "*has been Banned*"));
+            Events.on(EventType.PlayerIpUnbanEvent.class, event -> tc.sendMessage("**" + event.ip.replace('*', '+') + "** " + "*has been Unbanned*"));
         }
     }
 
