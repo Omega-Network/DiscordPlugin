@@ -14,27 +14,35 @@ import org.javacord.api.entity.channel.GroupChannelUpdater;
 import org.javacord.api.entity.message.MessageBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
+import org.javacord.api.entity.permission.Role;
+
+import disc.discordPlugin;
+
+import static disc.utilmethods.*;
 
 
 public class comCommands implements MessageCreateListener {
+    private discordPlugin mainData;
     @Override
     public void onMessageCreate(MessageCreateEvent event){
         String[] incoming_msg = event.getMessageContent().split("\\s+");
+        Role moderator = mainData.discRoles.get("987815204500951092");
 
         switch (incoming_msg[0]){
             case "..chat":
-                String[] msg = (event.getMessageContent().replace('\n', ' ')).split("\\s+", 2);
-                Call.sendMessage("[royale]" +event.getMessageAuthor().getName()+ " From discord >[] " + msg[1].trim());
+                String[] msg2 = (event.getMessageContent().replace('\n', ' ')).split("\\s+", 2);
+                Call.sendMessage("[royale]" +event.getMessageAuthor().getName()+ " From discord >[] " + msg2[1].trim());
                 break;
             case "..modchat":
-                Role role = guild.getRoleById(987815204500951092);
-                if (event.getMessageAuthor().asUser().get().getRoles(guild).contains(role)) {
-                    String[] msg = (event.getMessageContent().replace('\n', ' ')).split("\\s+", 2);
-                    Call.sendMessage("[scarlet]Mod Chat >[] " + msg[1].trim());
-                }
-                else {
+                if (moderator == null) {
+                    if (event.isPrivateMessage()) return;
                     event.getChannel().sendMessage("You do not have permission to use this command");
+                    return;
                 }
+                if (!hasPermission(moderator, event)) return;
+                String[] msg3 = (event.getMessageContent().replace('\n', ' ')).split("\\s+", 2);
+                Call.sendMessage("[scarlet]Mod Chat >[] " + msg3[1].trim());
+
                 break;
             case "..players":
                 StringBuilder lijst = new StringBuilder();
@@ -59,7 +67,7 @@ public class comCommands implements MessageCreateListener {
                     lijst2.append("Wave: " + Vars.state.wave + "\n");
                     lijst2.append("Enemies: " + Vars.state.enemies + "\n");
                     lijst2.append("Players: " + Groups.player.size() + '\n');
-                    lijst2.append("Admins (online): " + Vars.playerGroup.all().count(p -> p.isAdmin));
+//                    lijst2.append("Admins (online): " + Vars.playerGroup.all().count(p -> p.isAdmin));
                     new MessageBuilder().appendCode("", lijst2.toString()).send(event.getChannel());
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
