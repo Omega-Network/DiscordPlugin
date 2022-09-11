@@ -30,7 +30,7 @@ public class comCommands implements MessageCreateListener {
         switch (incoming_msg[0]){
             case "..chat":
                 String[] msg2 = (event.getMessageContent().replace('\n', ' ')).split("\\s+", 2);
-                Call.sendMessage("[sky]" +event.getMessageAuthor().getName()+ " From discord >[] " + msg2[1].trim());
+                Call.sendMessage("[sky]" +event.getMessageAuthor().getName()+ " from discord >[] " + msg2[1].trim());
                 event.getChannel().sendMessage("Sent :white_check_mark:");
                 break;
             case "..peepee":
@@ -92,7 +92,7 @@ public class comCommands implements MessageCreateListener {
                     StringBuilder lijst3 = new StringBuilder();
                     lijst3.append("Amount of items in the core\n\n");
                     ItemModule core = Groups.player.first().core().items;
-                    core.each((i, a) -> lijst3.append(i.name + " " + a + "\n"));
+                    core.each((i, a) -> lijst3.append(i.name + " " + a + "\n" + " "));
                     new MessageBuilder().appendCode("", lijst3.toString()).send(event.getChannel());
                 }
                 break;
