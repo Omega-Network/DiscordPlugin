@@ -106,7 +106,7 @@ public class discordPlugin extends Plugin {
             discLog("- Command '/d' enabled");
             handler.<Player>register("d", "<text...>", "Sends a message to discord.", (args, player) -> {
                 tc_d.sendMessage(player.name + " *From Mindustry* : " + args[0]);
-                Call.sendMessage(player.name + "[royale] to Discord[]: " + args[0]);
+                Call.sendMessage(player.name + "[sky] to Discord[]: " + args[0]);
             });
 
         TextChannel tc_c = discChannels.get("channel_id");

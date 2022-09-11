@@ -57,7 +57,7 @@ public class comCommands implements MessageCreateListener {
                 StringBuilder admins = new StringBuilder();
                 lijst.append("Players: ").append(Groups.player.size()).append("\n");
                 if(Groups.player.count(p->p.admin) > 0) {
-                    admins.append("Online Admins: ");// + Vars.playerGroup.all().count(p->p.isAdmin)+"\n");
+                    admins.append("Online Admins: \n");// + Vars.playerGroup.all().count(p->p.isAdmin)+"\n");
                 }
                 for (Player p : Groups.player){
                     if (p.admin()){
