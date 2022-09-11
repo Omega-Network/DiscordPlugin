@@ -38,6 +38,14 @@ public class comCommands implements MessageCreateListener {
                 String[] msg2 = (event.getMessageContent().replace('\n', ' ')).split("\\s+", 2);
                 Call.sendMessage("[sky]" +event.getMessageAuthor().getName()+ " From discord >[] " + msg2[1].trim());
                 break;
+            case "..peepee":
+                //ping command displaying ms
+                long time = System.currentTimeMillis();
+                event.getChannel().sendMessage("poopoo!").thenAcceptAsync(message -> {
+                    long ping = System.currentTimeMillis() - time;
+                    message.edit("poopoo: " + ping + "ms");
+                });
+                break;
             case "..modchat":
                 if (moderator == null) {
                     if (event.isPrivateMessage()) return;
