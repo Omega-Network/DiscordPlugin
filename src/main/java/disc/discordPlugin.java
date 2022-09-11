@@ -104,17 +104,14 @@ public class discordPlugin extends Plugin {
         if (api != null) return;
 
         TextChannel tc_d = discChannels.get("dchannel_id");
-        if (tc_d != null) {
             discLog("- Command '/d' enabled");
             handler.<Player>register("d", "<text...>", "Sends a message to discord.", (args, player) -> {
                 tc_d.sendMessage(player.name + " *From Mindustry* : " + args[0]);
                 Call.sendMessage(player.name + "[royale] to Discord[]: " + args[0]);
             });
-        }
 
         TextChannel tc_c = discChannels.get("channel_id");
         Role ro = discRoles.get("role_id", (Role) null);
-        if (tc_c != null && ro != null) {
             discLog("- Command '/gr' enabled");
             handler.<Player>register("gr", "[player] [reason...]", "Report a griefer by id (use '/gr' to get a list of ids)", (args, player) -> {
                 //https://github.com/Anuken/Mindustry/blob/master/core/src/io/anuke/mindustry/core/NetServer.java#L300-L351
@@ -190,7 +187,6 @@ public class discordPlugin extends Plugin {
                 }
             });
         }
-    }
 
     //getters
     public DiscordApi getAPI(){
