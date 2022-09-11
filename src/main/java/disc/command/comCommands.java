@@ -37,6 +37,7 @@ public class comCommands implements MessageCreateListener {
             case "..chat":
                 String[] msg2 = (event.getMessageContent().replace('\n', ' ')).split("\\s+", 2);
                 Call.sendMessage("[sky]" +event.getMessageAuthor().getName()+ " From discord >[] " + msg2[1].trim());
+                event.getChannel().sendMessage("Sent :white_check_mark:");
                 break;
             case "..peepee":
                 //ping command displaying ms
