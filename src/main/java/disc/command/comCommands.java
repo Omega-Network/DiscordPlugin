@@ -59,7 +59,7 @@ public class comCommands implements MessageCreateListener {
                     lijst2.append("Wave: " + Vars.state.wave + "\n");
                     lijst2.append("Enemies: " + Vars.state.enemies + "\n");
                     lijst2.append("Players: " + Groups.player.size() + '\n');
-                    //lijst2.append("Admins (online): " + Vars.playerGroup.all().count(p -> p.isAdmin));
+                    lijst2.append("Admins (online): " + Vars.playerGroup.all().count(p -> p.isAdmin));
                     new MessageBuilder().appendCode("", lijst2.toString()).send(event.getChannel());
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
