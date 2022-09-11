@@ -1,25 +1,19 @@
 package disc.command;
 
 //mindustry + arc
+
+import disc.discordPlugin;
 import mindustry.Vars;
-import mindustry.content.Items;
 import mindustry.gen.Call;
-
-//javacord
-
 import mindustry.gen.Groups;
 import mindustry.gen.Player;
 import mindustry.world.modules.ItemModule;
 import org.javacord.api.entity.message.MessageBuilder;
+import org.javacord.api.entity.permission.Role;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
-import org.javacord.api.entity.permission.Role;
 
-import disc.discordPlugin;
-
-import java.util.Arrays;
-
-import static disc.utilmethods.*;
+import static disc.utilmethods.hasPermission;
 
 
 public class comCommands implements MessageCreateListener {
@@ -98,10 +92,7 @@ public class comCommands implements MessageCreateListener {
                     StringBuilder lijst3 = new StringBuilder();
                     lijst3.append("Amount of items in the core\n\n");
                     ItemModule core = Groups.player.first().core().items;
-                    for (String s : Arrays.asList("Copper: " + core.get(Items.copper) + "\n", "Lead: " + core.get(Items.lead) + "\n", "Graphite: " + core.get(Items.graphite) + "\n", "Metaglass: " + core.get(Items.metaglass) + "\n", "Titanium: " + core.get(Items.titanium) + "\n", "Thorium: " + core.get(Items.thorium) + "\n", "Silicon: " + core.get(Items.silicon) + "\n", "Plastanium: " + core.get(Items.plastanium) + "\n", "Phase fabric: " + core.get(Items.phaseFabric) + "\n", "Surge alloy: " + core.get(Items.surgeAlloy) + "\n")) {
-                        lijst3.append(s);
-                    }
-
+                    core.each((i, a) -> lijst3.append(i.name + " " + a));
                     new MessageBuilder().appendCode("", lijst3.toString()).send(event.getChannel());
                 }
                 break;
