@@ -36,7 +36,7 @@ public class comCommands implements MessageCreateListener {
         switch (incoming_msg[0]){
             case "..chat":
                 String[] msg2 = (event.getMessageContent().replace('\n', ' ')).split("\\s+", 2);
-                Call.sendMessage("[royale]" +event.getMessageAuthor().getName()+ " From discord >[] " + msg2[1].trim());
+                Call.sendMessage("[sky]" +event.getMessageAuthor().getName()+ " From discord >[] " + msg2[1].trim());
                 break;
             case "..modchat":
                 if (moderator == null) {
