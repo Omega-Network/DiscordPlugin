@@ -45,7 +45,7 @@ public class mapCommands implements MessageCreateListener {
                 event.getChannel().sendMessage(commandDisabled);
                 return;
             }
-            event.getChannel().sendMessage("Still working on updating -- disabled for now");
+            event.getChannel().sendMessage("Still working on this command!");
 
 //            Role r = getRole(event.getApi(), data.getString("changeMap_role_id"));
 //            if (!hasPermission(r, event)) return;
@@ -143,7 +143,7 @@ public class mapCommands implements MessageCreateListener {
                 return;
             }
 
-            event.getChannel().sendMessage("Still working on updating -- disabled for now");
+            event.getChannel().sendMessage("Still working on this command!");
 
 //            Role r = getRole(event.getApi(), data.getString("mapConfig_role_id"));
 //            if (!hasPermission(r, event)) return;
@@ -190,7 +190,7 @@ public class mapCommands implements MessageCreateListener {
                 return;
             }
 
-            event.getChannel().sendMessage("Still working on updating -- disabled for now");
+            event.getChannel().sendMessage("Still working on this command!");
 
 //            Role r = getRole(event.getApi(), data.getString("mapConfig_role_id"));
 //            if (!hasPermission(r, event)) return;

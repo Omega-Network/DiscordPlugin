@@ -102,8 +102,8 @@ public class discordPlugin extends Plugin {
         if (tc_d != null) {
             discLog("- Command '/d' enabled");
             handler.<Player>register("d", "<text...>", "Sends a message to discord.", (args, player) -> {
-                tc_d.sendMessage(player.name + " *@mindustry* : " + args[0]);
-                Call.sendMessage(player.name + "[sky] to @discord[]: " + args[0]);
+                tc_d.sendMessage(player.name + " *From Mindustry* : " + args[0]);
+                Call.sendMessage(player.name + "[royale] to Discord[]: " + args[0]);
             });
         }
 
@@ -153,7 +153,7 @@ public class discordPlugin extends Plugin {
                     }
                     if (found != null) {
                         if (found.admin()) {
-                            player.sendMessage("[scarlet]Did you really expect to be able to report an admin?");
+                            player.sendMessage("[red]Did you really expect to be able to report an admin?");
                         } else if (found.team() != player.team()) {
                             player.sendMessage("[scarlet]Only players on your team can be reported.");
                         } else {
@@ -163,8 +163,8 @@ public class discordPlugin extends Plugin {
                                         .setEmbed(new EmbedBuilder()
                                                 .setTitle("Potential griefer online")
                                                 .setDescription(ro.getMentionTag())
-                                                .addField("name", found.name)
-                                                .addField("reason", args[1])
+                                                .addField("Name", found.name)
+                                                .addField("Reason", args[1])
                                                 .setColor(Color.ORANGE)
                                                 .setFooter("Reported by " + player.name))
                                         .send(tc_c);
@@ -173,16 +173,15 @@ public class discordPlugin extends Plugin {
                                         .setEmbed(new EmbedBuilder()
                                                 .setTitle("Potential griefer online")
                                                 .setDescription(ro.getMentionTag())
-                                                .addField("name", found.name)
+                                                .addField("Name", found.name)
                                                 .setColor(Color.ORANGE)
                                                 .setFooter("Reported by " + player.name))
                                         .send(tc_c);
                             }
-                            Call.sendMessage(found.name + "[sky] is reported to discord.");
                             cooldowns.put(System.currentTimeMillis() / 1000L, player.uuid());
                         }
                     } else {
-                        player.sendMessage("[scarlet]No player[orange] '" + args[0] + "'[scarlet] found.");
+                        player.sendMessage("[scarlet]No such player[orange] '" + args[0] + "'[scarlet] found.");
                     }
                 }
             });

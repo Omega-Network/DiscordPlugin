@@ -18,7 +18,7 @@ import static disc.utilmethods.*;
 
 
 public class serverCommands implements MessageCreateListener {
-    final String commandDisabled = "This command is disabled.";
+    final String commandDisabled = "You tried, thats all that matters.";
 
     private discordPlugin mainData;
 

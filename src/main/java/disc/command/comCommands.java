@@ -24,14 +24,24 @@ public class comCommands implements MessageCreateListener {
         switch (incoming_msg[0]){
             case "..chat":
                 String[] msg = (event.getMessageContent().replace('\n', ' ')).split("\\s+", 2);
-                Call.sendMessage("[sky]" +event.getMessageAuthor().getName()+ " @discord >[] " + msg[1].trim());
+                Call.sendMessage("[royale]" +event.getMessageAuthor().getName()+ " From discord >[] " + msg[1].trim());
+                break;
+            case "..modchat":
+                Role role = guild.getRoleById(987815204500951092);
+                if (event.getMessageAuthor().asUser().get().getRoles(guild).contains(role)) {
+                    String[] msg = (event.getMessageContent().replace('\n', ' ')).split("\\s+", 2);
+                    Call.sendMessage("[scarlet]Mod Chat >[] " + msg[1].trim());
+                }
+                else {
+                    event.getChannel().sendMessage("You do not have permission to use this command");
+                }
                 break;
             case "..players":
                 StringBuilder lijst = new StringBuilder();
                 StringBuilder admins = new StringBuilder();
-                lijst.append("players: " + Groups.player.size()+"\n");
+                lijst.append("Players: " + Groups.player.size()+"\n");
                 if(Groups.player.count(p->p.admin) > 0) {
-                    admins.append("online admins: ");// + Vars.playerGroup.all().count(p->p.isAdmin)+"\n");
+                    admins.append("Online Admins: ");// + Vars.playerGroup.all().count(p->p.isAdmin)+"\n");
                 }
                 for (Player p : Groups.player){
                     if (p.admin()){
@@ -45,11 +55,11 @@ public class comCommands implements MessageCreateListener {
             case "..info":
                 try {
                     StringBuilder lijst2 = new StringBuilder();
-                    lijst2.append("map: " + Vars.state.map.name() + "\n" + "author: " + Vars.state.map.author() + "\n");
-                    lijst2.append("wave: " + Vars.state.wave + "\n");
-                    lijst2.append("enemies: " + Vars.state.enemies + "\n");
-                    lijst2.append("players: " + Groups.player.size() + '\n');
-                    //lijst.append("admins (online): " + Vars.playerGroup.all().count(p -> p.isAdmin));
+                    lijst2.append("Map: " + Vars.state.map.name() + "\n" + "Author: " + Vars.state.map.author() + "\n");
+                    lijst2.append("Wave: " + Vars.state.wave + "\n");
+                    lijst2.append("Enemies: " + Vars.state.enemies + "\n");
+                    lijst2.append("Players: " + Groups.player.size() + '\n');
+                    //lijst2.append("Admins (online): " + Vars.playerGroup.all().count(p -> p.isAdmin));
                     new MessageBuilder().appendCode("", lijst2.toString()).send(event.getChannel());
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
@@ -65,18 +75,18 @@ public class comCommands implements MessageCreateListener {
                     event.getChannel().sendMessage("No players online!");
                 } else {
                     StringBuilder lijst3 = new StringBuilder();
-                    lijst3.append("amount of items in the core\n\n");
+                    lijst3.append("Amount of items in the core\n\n");
                     ItemModule core = Groups.player.first().core().items;
-                    lijst3.append("copper: " + core.get(Items.copper) + "\n");
-                    lijst3.append("lead: " + core.get(Items.lead) + "\n");
-                    lijst3.append("graphite: " + core.get(Items.graphite) + "\n");
-                    lijst3.append("metaglass: " + core.get(Items.metaglass) + "\n");
-                    lijst3.append("titanium: " + core.get(Items.titanium) + "\n");
-                    lijst3.append("thorium: " + core.get(Items.thorium) + "\n");
-                    lijst3.append("silicon: " + core.get(Items.silicon) + "\n");
-                    lijst3.append("plastanium: " + core.get(Items.plastanium) + "\n");
-                    lijst3.append("phase fabric: " + core.get(Items.phaseFabric) + "\n");
-                    lijst3.append("surge alloy: " + core.get(Items.surgeAlloy) + "\n");
+                    lijst3.append("Copper: " + core.get(Items.copper) + "\n");
+                    lijst3.append("Lead: " + core.get(Items.lead) + "\n");
+                    lijst3.append("Graphite: " + core.get(Items.graphite) + "\n");
+                    lijst3.append("Metaglass: " + core.get(Items.metaglass) + "\n");
+                    lijst3.append("Titanium: " + core.get(Items.titanium) + "\n");
+                    lijst3.append("Thorium: " + core.get(Items.thorium) + "\n");
+                    lijst3.append("Silicon: " + core.get(Items.silicon) + "\n");
+                    lijst3.append("Plastanium: " + core.get(Items.plastanium) + "\n");
+                    lijst3.append("Phase fabric: " + core.get(Items.phaseFabric) + "\n");
+                    lijst3.append("Surge alloy: " + core.get(Items.surgeAlloy) + "\n");
 
                     new MessageBuilder().appendCode("", lijst3.toString()).send(event.getChannel());
                 }
