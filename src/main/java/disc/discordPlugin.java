@@ -101,7 +101,6 @@ public class discordPlugin extends Plugin {
     //register commands that player can invoke in-game
     @Override
     public void registerClientCommands(CommandHandler handler) {
-        if (api != null) return;
 
         TextChannel tc_d = discChannels.get("dchannel_id");
             discLog("- Command '/d' enabled");
