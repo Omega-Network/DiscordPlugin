@@ -173,6 +173,8 @@ public class discordPlugin extends Plugin {
                                                 .setColor(Color.ORANGE)
                                                 .setFooter("Reported by " + player.name))
                                         .send(tc_c);
+                                tc_c.sendMessage(ro.getMentionTag());
+                                player.sendMessage("[green]Report sent.");
                             } else {
                                 new MessageBuilder()
                                         .setEmbed(new EmbedBuilder()
@@ -182,6 +184,8 @@ public class discordPlugin extends Plugin {
                                                 .setColor(Color.ORANGE)
                                                 .setFooter("Reported by " + player.name))
                                         .send(tc_c);
+                                tc_c.sendMessage(ro.getMentionTag());
+                                player.sendMessage("[green]Report sent.");
                             }
                             cooldowns.put(System.currentTimeMillis() / 1000L, player.uuid());
                         }

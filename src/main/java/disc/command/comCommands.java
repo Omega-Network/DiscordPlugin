@@ -9,9 +9,12 @@ import mindustry.gen.Groups;
 import mindustry.gen.Player;
 import mindustry.world.modules.ItemModule;
 import org.javacord.api.entity.message.MessageBuilder;
+import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.entity.permission.Role;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
+
+import java.awt.*;
 
 import static disc.utilmethods.hasPermission;
 
@@ -118,15 +121,12 @@ public class comCommands implements MessageCreateListener {
                 event.getChannel().sendMessage("Player banned");
                 break;
             case "..help":
-                //send an embed with all commands
                 event.getChannel().sendMessage("Commands: \n" +
                         "```\n" +
                         "..chat <message> - send a message to the server chat\n" +
-                        "..modchat <message> - send a message to the server chat as a moderator\n" +
                         "..players - list all the players online\n" +
                         "..info - get info about the server\n" +
                         "..infores - get info about the resources in the core\n" +
-                        "..ban <player> - ban a player from the server\n" +
                         "..help - list all the commands\n" +
                         "```");
                 break;
