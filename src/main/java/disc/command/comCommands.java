@@ -9,12 +9,9 @@ import mindustry.gen.Groups;
 import mindustry.gen.Player;
 import mindustry.world.modules.ItemModule;
 import org.javacord.api.entity.message.MessageBuilder;
-import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.entity.permission.Role;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
-
-import java.awt.*;
 
 import static disc.utilmethods.hasPermission;
 
@@ -96,7 +93,7 @@ public class comCommands implements MessageCreateListener {
                     StringBuilder lijst3 = new StringBuilder();
                     lijst3.append("Amount of items in the core\n\n");
                     ItemModule core = Groups.player.first().core().items;
-                    core.each((i, a) -> lijst3.append(i.name + " " + a + "\n"));
+                    core.each((i, a) -> lijst3.append(i.name).append(" ").append(a).append("\n"));
                     new MessageBuilder().appendCode("", lijst3.toString()).send(event.getChannel());
                 }
                 break;
@@ -128,8 +125,12 @@ public class comCommands implements MessageCreateListener {
                         "..players - list all the players online\n" +
                         "..info - get info about the server\n" +
                         "..infores - get info about the resources in the core\n" +
+                        "..maps - list all maps on the server\n" +
                         "..help - list all the commands\n" +
                         "```");
+                break;
+            case "..cat":
+                event.getChannel().sendMessage("https://cataas.com/cat");
                 break;
             default:
                 break;
