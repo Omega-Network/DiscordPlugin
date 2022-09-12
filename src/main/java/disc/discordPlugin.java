@@ -81,14 +81,19 @@ public class discordPlugin extends Plugin {
 
         //live chat
         TextChannel tc = discChannels.get("live_chat_channel_id");
+        TextChannel tc2 = discChannels.get("ban_chat_channel_id");
+
         if (tc != null) {
             Events.on(EventType.PlayerChatEvent.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "**: " + event.message));
-            Events.on(EventType.PlayerLeave.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "*has Disconnected*"));
-            Events.on(EventType.PlayerJoin.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "*has Connected*"));
-            Events.on(EventType.PlayerBanEvent.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "*has been Banned*"));
-            Events.on(EventType.PlayerUnbanEvent.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "*has been Unbanned*"));
-            Events.on(EventType.PlayerIpBanEvent.class, event -> tc.sendMessage("**" + event.ip.replace('*', '+') + "** " + "*has been Banned*"));
-            Events.on(EventType.PlayerIpUnbanEvent.class, event -> tc.sendMessage("**" + event.ip.replace('*', '+') + "** " + "*has been Unbanned*"));
+            Events.on(EventType.PlayerLeave.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "***has Left***"));
+            Events.on(EventType.PlayerJoin.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "***has Joined***"));
+            Events.on(EventType.PlayerConnect.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "*is Connecting*"));
+        }
+        if (tc2 != null) {
+            Events.on(EventType.PlayerBanEvent.class, event -> tc2.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "*has been **Banned***"));
+            Events.on(EventType.PlayerUnbanEvent.class, event -> tc2.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "*has been **Unbanned***"));
+            Events.on(EventType.PlayerIpBanEvent.class, event -> tc2.sendMessage("**" + event.ip.replace('*', '+') + "** " + "*has been* **Banned***"));
+            Events.on(EventType.PlayerIpUnbanEvent.class, event -> tc2.sendMessage("**" + event.ip.replace('*', '+') + "** " + "*has been* **Unbanned***"));
         }
     }
 
@@ -255,6 +260,7 @@ public class discordPlugin extends Plugin {
         channels.put("dchannel_id", "messages using /d will be send to this channel - can be empty");
         channels.put("channel_id", "id of the channel where /gr reports will appear - can be empty");
         channels.put("live_chat_channel_id", "id of the channel where live chat will appear - can be empty");
+        channels.put("ban_chat_channel_id", "id of the channel where all ban/kicks will appear - can be empty");
 
         config.put("channel_ids", channels);
 

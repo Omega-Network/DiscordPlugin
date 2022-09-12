@@ -25,7 +25,7 @@ public class comCommands implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event){
         String[] incoming_msg = event.getMessageContent().split("\\s+");
-        Role moderator = mainData.discRoles.get("987815204500951092");
+        Role moderator = mainData.discRoles.get("role_id");
 
         switch (incoming_msg[0]){
             case "..chat":
@@ -87,14 +87,48 @@ public class comCommands implements MessageCreateListener {
                     event.getChannel().sendMessage("Only available when playing survivalmode!");
                     return;
                 } else if(Groups.player.isEmpty()) {
-                    event.getChannel().sendMessage("No players online!");
+                    event.getChannel().sendMessage("No players online! Could not check resources.");
                 } else {
                     StringBuilder lijst3 = new StringBuilder();
                     lijst3.append("Amount of items in the core\n\n");
                     ItemModule core = Groups.player.first().core().items;
-                    core.each((i, a) -> lijst3.append(i.name + " " + a + "\n" + " "));
+                    core.each((i, a) -> lijst3.append(i.name + " " + a + "\n"));
                     new MessageBuilder().appendCode("", lijst3.toString()).send(event.getChannel());
                 }
+                break;
+                //ban command
+            case "..ban":
+                if (moderator == null) {
+                    if (event.isPrivateMessage()) return;
+                    event.getChannel().sendMessage("You do not have permission to use this command");
+                    return;
+                }
+                if (!hasPermission(moderator, event)) return;
+                if (incoming_msg.length < 2) {
+                    event.getChannel().sendMessage("Please specify a player to ban");
+                    return;
+                }
+                String[] msg4 = (event.getMessageContent().replace('\n', ' ')).split("\\s+", 2);
+                Player player = Groups.player.find(p -> p.name.equalsIgnoreCase(msg4[1]));
+                if (player == null) {
+                    event.getChannel().sendMessage("Player not found");
+                    return;
+                }
+                player.con.kick("You have been banned from the server");
+                event.getChannel().sendMessage("Player banned");
+                break;
+            case "..help":
+                //send an embed with all commands
+                event.getChannel().sendMessage("Commands: \n" +
+                        "```\n" +
+                        "..chat <message> - send a message to the server chat\n" +
+                        "..modchat <message> - send a message to the server chat as a moderator\n" +
+                        "..players - list all the players online\n" +
+                        "..info - get info about the server\n" +
+                        "..infores - get info about the resources in the core\n" +
+                        "..ban <player> - ban a player from the server\n" +
+                        "..help - list all the commands\n" +
+                        "```");
                 break;
             default:
                 break;
