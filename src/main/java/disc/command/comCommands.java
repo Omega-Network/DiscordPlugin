@@ -52,7 +52,8 @@ public class comCommands implements MessageCreateListener {
                 }
                 if (!hasPermission(moderator, event)) return;
                 String[] msg3 = (event.getMessageContent().replace('\n', ' ')).split("\\s+", 2);
-                Call.sendMessage("[scarlet]Mod Chat >[] " + msg3[1].trim());
+                Call.sendMessage("[scarlet]Administrator >[] " + msg3[1].trim());
+                event.getChannel().sendMessage(":white_check_mark:");
 
                 break;
             case "..players":
