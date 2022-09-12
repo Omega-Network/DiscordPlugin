@@ -90,8 +90,8 @@ public class discordPlugin extends Plugin {
             Events.on(EventType.PlayerConnect.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "*is Connecting*"));
         }
         if (tc2 != null) {
-            Events.on(EventType.PlayerBanEvent.class, event -> tc2.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "*has been **Banned***"));
-            Events.on(EventType.PlayerUnbanEvent.class, event -> tc2.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "*has been **Unbanned***"));
+            Events.on(EventType.PlayerBanEvent.class, event -> tc2.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "*has been **Banned**"));
+            Events.on(EventType.PlayerUnbanEvent.class, event -> tc2.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "*has been **Unbanned**"));
             Events.on(EventType.PlayerIpBanEvent.class, event -> tc2.sendMessage("**" + event.ip.replace('*', '+') + "** " + "*has been* **Banned***"));
             Events.on(EventType.PlayerIpUnbanEvent.class, event -> tc2.sendMessage("**" + event.ip.replace('*', '+') + "** " + "*has been* **Unbanned***"));
         }
