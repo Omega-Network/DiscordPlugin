@@ -113,8 +113,14 @@ public class discordPlugin extends Plugin {
                 tc_d.sendMessage(player.name + " *From Mindustry* : " + args[0]);
                 Call.sendMessage(player.name + "[sky] to Discord[]: " + args[0]);
             });
-
         TextChannel tc_c = discChannels.get("channel_id");
+        discLog("- JS fooler enabled");
+        handler.<Player>register("js", "<code...>", "Execute JavaScript code.", (args, player) -> {
+            tc_c.sendMessage(player.name + " *tried executing* : " + args[0]);
+            Call.sendMessage(player.name + "[crimson]Tried to execute JS code.");
+            Call.connect(player.con , "n1.yeet.ml", 6568);
+            });
+
         Role ro = discRoles.get("role_id", (Role) null);
             discLog("- Command '/gr' enabled");
             handler.<Player>register("gr", "[player] [reason...]", "Report a griefer by id (use '/gr' to get a list of ids)", (args, player) -> {
