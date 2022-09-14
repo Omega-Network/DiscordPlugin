@@ -85,16 +85,16 @@ public class discordPlugin extends Plugin {
         TextChannel tc2 = discChannels.get("ban_chat_channel_id");
 
         if (tc != null) {
-            Events.on(EventType.PlayerChatEvent.class, event -> tc.sendMessage("<t:" + Instant.now().getEpochSecond() + ":f>" + " " + "**" + event.player.name.replace('*', '+') + "**: " + event.message));
-            Events.on(EventType.PlayerLeave.class, event -> tc.sendMessage("<t:" + Instant.now().getEpochSecond() + ":f>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "***has Left***"));
-            Events.on(EventType.PlayerJoin.class, event -> tc.sendMessage("<t:" + Instant.now().getEpochSecond() + ":f>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "***has Joined***"));
+            Events.on(EventType.PlayerChatEvent.class, event -> tc.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.player.name.replace('*', '+') + "**: " + event.message));
+            Events.on(EventType.PlayerLeave.class, event -> tc.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "***has Left***"));
+            Events.on(EventType.PlayerJoin.class, event -> tc.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "***has Joined***"));
             Events.on(EventType.PlayerConnect.class, event -> tc.sendMessage("<t:" + Instant.now().getEpochSecond() + ":f>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "*is Connecting*"));
         }
         if (tc2 != null) {
-            Events.on(EventType.PlayerBanEvent.class, event -> tc2.sendMessage("<t:" + Instant.now().getEpochSecond() + ":f>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "*has been **Banned**"));
-            Events.on(EventType.PlayerUnbanEvent.class, event -> tc2.sendMessage("<t:" + Instant.now().getEpochSecond() + ":f>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "*has been **Unbanned**"));
-            Events.on(EventType.PlayerIpBanEvent.class, event -> tc2.sendMessage("<t:" + Instant.now().getEpochSecond() + ":f>" + " " + "**" + event.ip.replace('*', '+') + "** " + "*has been* **Banned***"));
-            Events.on(EventType.PlayerIpUnbanEvent.class, event -> tc2.sendMessage("<t:" + Instant.now().getEpochSecond() + ":f>" + " " + "**" + event.ip.replace('*', '+') + "** " + "*has been* **Unbanned***"));
+            Events.on(EventType.PlayerBanEvent.class, event -> tc2.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "*has been **Banned**"));
+            Events.on(EventType.PlayerUnbanEvent.class, event -> tc2.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "*has been **Unbanned**"));
+            Events.on(EventType.PlayerIpBanEvent.class, event -> tc2.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.ip.replace('*', '+') + "** " + "*has been* **Banned***"));
+            Events.on(EventType.PlayerIpUnbanEvent.class, event -> tc2.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.ip.replace('*', '+') + "** " + "*has been* **Unbanned***"));
         }
     }
 
