@@ -17,7 +17,7 @@ ext{
 dependencies{
     compileOnly "com.github.Anuken.Arc:arc-core:$mindustryVersion"
     compileOnly "com.github.Anuken.Mindustry:core:$mindustryVersion"
-    implementation group: 'org.json', name: 'json', version: '20210307'
+    implementation group: 'org.json', name: 'json', version: '20220320'
 
     implementation 'org.javacord:javacord:3.5.0'
 }

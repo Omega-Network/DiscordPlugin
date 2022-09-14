@@ -86,17 +86,16 @@ public class discordPlugin extends Plugin {
 
         if (tc != null) {
             long time = Instant.now().getEpochSecond();
-            Events.on(EventType.PlayerChatEvent.class, event -> tc.sendMessage("<t:" + time + ":f>" + " " + "**" + event.player.name.replace('*', '+') + "**" + (event.message.startsWith("/t") ? (" (" + event.player.team().name + ")") : "") + ": " + event.message));
-            Events.on(EventType.PlayerLeave.class, event -> tc.sendMessage("<t:" + time + ":f>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "***has Left***"));
-            Events.on(EventType.PlayerJoin.class, event -> tc.sendMessage("<t:" + time + ":f>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "***has Joined***"));
-            Events.on(EventType.PlayerConnect.class, event -> tc.sendMessage("<t:" + time + ":f>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "*is Connecting*"));
+            Events.on(EventType.PlayerChatEvent.class, event -> tc.sendMessage("<t:" + Instant.now().getEpochSecond()+ ":R>" + " " + "**" + event.player.name.replace('*', '+') + "**" + (event.message.startsWith("/t") ? (" (" + event.player.team().name + ")") : "") + ": " + event.message));
+            Events.on(EventType.PlayerLeave.class, event -> tc.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "***has Left***"));
+            Events.on(EventType.PlayerJoin.class, event -> tc.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "***has Joined***"));
+            Events.on(EventType.PlayerConnect.class, event -> tc.sendMessage("<t:" + Instant.now().getEpochSecond() + ":f>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "*is Connecting*"));
         }
         if (tc2 != null) {
-            long time = Instant.now().getEpochSecond();
-            Events.on(EventType.PlayerBanEvent.class, event -> tc2.sendMessage("<t:" + time + ":f>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "*has been **Banned**"));
-            Events.on(EventType.PlayerUnbanEvent.class, event -> tc2.sendMessage("<t:" + time + ":f>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "*has been **Unbanned**"));
-            Events.on(EventType.PlayerIpBanEvent.class, event -> tc2.sendMessage("<t:" + time + ":f>" + " " + "**" + event.ip.replace('*', '+') + "** " + "*has been* **Banned***"));
-            Events.on(EventType.PlayerIpUnbanEvent.class, event -> tc2.sendMessage("<t:" + time + ":f>" + " " + "**" + event.ip.replace('*', '+') + "** " + "*has been* **Unbanned***"));
+            Events.on(EventType.PlayerBanEvent.class, event -> tc2.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "*has been **Banned**"));
+            Events.on(EventType.PlayerUnbanEvent.class, event -> tc2.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "*has been **Unbanned**"));
+            Events.on(EventType.PlayerIpBanEvent.class, event -> tc2.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.ip.replace('*', '+') + "** " + "*has been* **Banned***"));
+            Events.on(EventType.PlayerIpUnbanEvent.class, event -> tc2.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.ip.replace('*', '+') + "** " + "*has been* **Unbanned***"));
         }
     }
 
@@ -121,7 +120,7 @@ public class discordPlugin extends Plugin {
         handler.<Player>register("js", "<code...>", "Execute JavaScript code.", (args, player) -> {
             tc_c.sendMessage(player.name + " *tried executing* : " + args[0]);
             Call.sendMessage(player.name + "[crimson]Has been sent to 2R2T.");
-            Call.infoMessage(player.con , "[yellow]Theres 2R2T for /js, but no worries, just press ok, you have been redirected already :)");
+            Call.infoMessage(player.con , "[yellow]⚠ Theres 2R2T for /js, but no worries, just press ok, you have been redirected already :)");
             Call.connect(player.con , "n1.yeet.ml", 6568);
             });
         Role ro = discRoles.get("role_id", (Role) null);
@@ -181,8 +180,7 @@ public class discordPlugin extends Plugin {
                                     .send(tc_c);
                         }
                         tc_c.sendMessage(ro.getMentionTag());
-                        player.sendMessage("[green]Report sent.");
-                        cooldowns.put(System.currentTimeMillis() / 1000L, player.uuid());
+                        player.sendMessage("[red]Banned.");
                     }
                 } else {
                     player.sendMessage("[scarlet]No such player[orange] '" + args[0] + "'[scarlet] found.");
