@@ -28,6 +28,7 @@ import org.json.JSONTokener;
 import java.awt.Color;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.Instant;
 import java.util.Objects;
 
 import static disc.discConstants.*;
@@ -84,16 +85,18 @@ public class discordPlugin extends Plugin {
         TextChannel tc2 = discChannels.get("ban_chat_channel_id");
 
         if (tc != null) {
-            Events.on(EventType.PlayerChatEvent.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "**: " + event.message));
-            Events.on(EventType.PlayerLeave.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "***has Left***"));
-            Events.on(EventType.PlayerJoin.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "***has Joined***"));
-            Events.on(EventType.PlayerConnect.class, event -> tc.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "*is Connecting*"));
+            long time = Instant.now().getEpochSecond();
+            Events.on(EventType.PlayerChatEvent.class, event -> tc.sendMessage("<t:" + time + ":f>" + "**" + event.player.name.replace('*', '+') + "**: " + event.message));
+            Events.on(EventType.PlayerLeave.class, event -> tc.sendMessage("<t:" + time + ":f>" + "**" + event.player.name.replace('*', '+') + "** " + "***has Left***"));
+            Events.on(EventType.PlayerJoin.class, event -> tc.sendMessage("<t:" + time + ":f>" + "**" + event.player.name.replace('*', '+') + "** " + "***has Joined***"));
+            Events.on(EventType.PlayerConnect.class, event -> tc.sendMessage("<t:" + time + ":f>" + "**" + event.player.name.replace('*', '+') + "** " + "*is Connecting*"));
         }
         if (tc2 != null) {
-            Events.on(EventType.PlayerBanEvent.class, event -> tc2.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "*has been **Banned**"));
-            Events.on(EventType.PlayerUnbanEvent.class, event -> tc2.sendMessage("**" + event.player.name.replace('*', '+') + "** " + "*has been **Unbanned**"));
-            Events.on(EventType.PlayerIpBanEvent.class, event -> tc2.sendMessage("**" + event.ip.replace('*', '+') + "** " + "*has been* **Banned***"));
-            Events.on(EventType.PlayerIpUnbanEvent.class, event -> tc2.sendMessage("**" + event.ip.replace('*', '+') + "** " + "*has been* **Unbanned***"));
+            long time = Instant.now().getEpochSecond();
+            Events.on(EventType.PlayerBanEvent.class, event -> tc2.sendMessage("<t:" + time + ":f>" + "**" + event.player.name.replace('*', '+') + "** " + "*has been **Banned**"));
+            Events.on(EventType.PlayerUnbanEvent.class, event -> tc2.sendMessage("<t:" + time + ":f>" + "**" + event.player.name.replace('*', '+') + "** " + "*has been **Unbanned**"));
+            Events.on(EventType.PlayerIpBanEvent.class, event -> tc2.sendMessage("<t:" + time + ":f>" + "**" + event.ip.replace('*', '+') + "** " + "*has been* **Banned***"));
+            Events.on(EventType.PlayerIpUnbanEvent.class, event -> tc2.sendMessage("<t:" + time + ":f>" + "**" + event.ip.replace('*', '+') + "** " + "*has been* **Unbanned***"));
         }
     }
 
