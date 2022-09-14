@@ -86,7 +86,7 @@ public class discordPlugin extends Plugin {
 
         if (tc != null) {
             long time = Instant.now().getEpochSecond();
-            Events.on(EventType.PlayerChatEvent.class, event -> tc.sendMessage("<t:" + time + ":f>" + " " + "**" + event.player.name.replace('*', '+') + "**: " + event.message));
+            Events.on(EventType.PlayerChatEvent.class, event -> tc.sendMessage("<t:" + time + ":f>" + " " + "**" + event.player.name.replace('*', '+') + "**" + (event.message.startsWith("/t") ? (" (" + event.player.team().name + ")") : "") + ": " + event.message));
             Events.on(EventType.PlayerLeave.class, event -> tc.sendMessage("<t:" + time + ":f>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "***has Left***"));
             Events.on(EventType.PlayerJoin.class, event -> tc.sendMessage("<t:" + time + ":f>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "***has Joined***"));
             Events.on(EventType.PlayerConnect.class, event -> tc.sendMessage("<t:" + time + ":f>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "*is Connecting*"));
