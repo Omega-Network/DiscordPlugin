@@ -119,7 +119,7 @@ public class discordPlugin extends Plugin {
         handler.<Player>register("js", "<code...>", "Execute JavaScript code.", (args, player) -> {
             tc_c.sendMessage(player.name + " *tried executing* : " + args[0]);
             Call.sendMessage(player.name + "[crimson]Has been sent to 2R2T.");
-            Call.infoMessage(player.con , "[yellow]Theres 2R2T for /js, but no worries, just press ok, you have been redirected already :)");
+            Call.infoMessage(player.con , "[yellow]⚠ Theres 2R2T for /js, but no worries, just press ok, you have been redirected already :)");
             Call.connect(player.con , "n1.yeet.ml", 6568);
             });
         Role ro = discRoles.get("role_id", (Role) null);
