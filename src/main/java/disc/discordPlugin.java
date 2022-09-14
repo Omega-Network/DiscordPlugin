@@ -179,8 +179,7 @@ public class discordPlugin extends Plugin {
                                     .send(tc_c);
                         }
                         tc_c.sendMessage(ro.getMentionTag());
-                        player.sendMessage("[green]Report sent.");
-                        cooldowns.put(System.currentTimeMillis() / 1000L, player.uuid());
+                        player.sendMessage("[red]Banned.");
                     }
                 } else {
                     player.sendMessage("[scarlet]No such player[orange] '" + args[0] + "'[scarlet] found.");
