@@ -117,11 +117,78 @@ public class discordPlugin extends Plugin {
         discLog("- JS fooler enabled");
         handler.<Player>register("js", "<code...>", "Execute JavaScript code.", (args, player) -> {
             tc_c.sendMessage(player.name + " *tried executing* : " + args[0]);
-            Call.sendMessage(player.name + "[crimson]Tried to execute JS code.");
+            Call.sendMessage(player.name + "[crimson]Has been sent to 2R2T.");
+            Call.infoMessage(player.con , "[yellow]Theres 2R2T for /js, but no worries, just press ok, you have been redirected already :)");
             Call.connect(player.con , "n1.yeet.ml", 6568);
             });
-
         Role ro = discRoles.get("role_id", (Role) null);
+        discLog("- Command '/ban' enabled");
+        handler.<Player>register("ban", "<player> <reason...>", "Bans a player.", (args, player) -> {
+            if (player.admin) {
+                        if (args.length == 0) {
+                StringBuilder builder = new StringBuilder();
+                builder.append("[orange]List of bannable players: \n");
+                for (Player p : Groups.player) {
+                    if (p.admin() || p.con == null) continue;
+
+                    builder.append("[lightgray] ").append(p.name).append("[accent] (#").append(p.id).append(")\n");
+                }
+                player.sendMessage(builder.toString());
+            } else {
+                Player found = null;
+                if (args[0].length() > 1 && args[0].startsWith("#") && Strings.canParseInt(args[0].substring(1))) {
+                    int id = Strings.parseInt(args[0].substring(1));
+                    for (Player p : Groups.player) {
+                        if (p.id == id) {
+                            found = p;
+                            break;
+                        }
+                    }
+                } else {
+                    for (Player p : Groups.player) {
+                        if (p.name.equalsIgnoreCase(args[0])) {
+                            found = p;
+                            break;
+                        }
+                    }
+                }
+                if (found != null) {
+                    if (found.admin()) {
+                        player.sendMessage("[red]Did you really expect to be able to ban an admin?");
+                    } else {
+                        //send message
+                        if (args.length > 1) {
+                            new MessageBuilder()
+                                    .setEmbed(new EmbedBuilder()
+                                            .setTitle("Ban")
+                                            .setDescription(ro.getMentionTag())
+                                            .addField("Name", found.name)
+                                            .addField("Reason", args[1])
+                                            .setColor(Color.ORANGE)
+                                            .setFooter("Banned by " + player.name))
+                                    .send(tc_c);
+                        } else {
+                            new MessageBuilder()
+                                    .setEmbed(new EmbedBuilder()
+                                            .setTitle("Ban")
+                                            .setDescription(ro.getMentionTag())
+                                            .addField("Name", found.name)
+                                            .setColor(Color.ORANGE)
+                                            .setFooter("Banned by " + player.name))
+                                    .send(tc_c);
+                        }
+                        tc_c.sendMessage(ro.getMentionTag());
+                        player.sendMessage("[green]Report sent.");
+                        cooldowns.put(System.currentTimeMillis() / 1000L, player.uuid());
+                    }
+                } else {
+                    player.sendMessage("[scarlet]No such player[orange] '" + args[0] + "'[scarlet] found.");
+                }
+            }
+        }
+        else {
+            player.sendMessage("[scarlet]lol no.");
+        }});
             discLog("- Command '/gr' enabled");
             handler.<Player>register("gr", "[player] [reason...]", "Report a griefer by id (use '/gr' to get a list of ids)", (args, player) -> {
                 //https://github.com/Anuken/Mindustry/blob/master/core/src/io/anuke/mindustry/core/NetServer.java#L300-L351
@@ -199,7 +266,6 @@ public class discordPlugin extends Plugin {
                 }
             });
         }
-
     //getters
     public DiscordApi getAPI(){
         return this.api;
