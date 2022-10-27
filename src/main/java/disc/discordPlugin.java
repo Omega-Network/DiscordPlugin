@@ -288,6 +288,7 @@ public class discordPlugin extends Plugin {
             }
         }else{
             invalidConfig = true;
+            discLog(FileNotFoundErrorMessage + "or invalid configuration");
             return;
         }
 
