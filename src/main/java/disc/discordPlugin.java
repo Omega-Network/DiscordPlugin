@@ -88,7 +88,7 @@ public class discordPlugin extends Plugin {
             Events.on(EventType.PlayerChatEvent.class, event -> tc.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.player.name.replace('*', '+') + "**: " + event.message));
             Events.on(EventType.PlayerLeave.class, event -> tc.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "***has Left***"));
             Events.on(EventType.PlayerJoin.class, event -> tc.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "***has Joined***"));
-            Events.on(EventType.PlayerConnect.class, event -> tc.sendMessage("<t:" + Instant.now().getEpochSecond() + ":f>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "*is Connecting*"));
+            Events.on(EventType.PlayerConnect.class, event -> tc.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "*is Connecting*"));
         }
         if (tc2 != null) {
             Events.on(EventType.PlayerBanEvent.class, event -> tc2.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "*has been **Banned**"));

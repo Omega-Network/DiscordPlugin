@@ -13,6 +13,7 @@ import org.javacord.api.entity.permission.Role;
 
 
 import static disc.utilmethods.*;
+import static disc.discConstants.*;
 
 
 public class mapCommands implements MessageCreateListener {
@@ -28,17 +29,17 @@ public class mapCommands implements MessageCreateListener {
 
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
-        if (event.getMessageContent().equalsIgnoreCase("..maps")) {
+        if (event.getMessageContent().equalsIgnoreCase(prefix + "maps")) {
             Vars.maps.reload();
             StringBuilder mapLijst = new StringBuilder();
             mapLijst.append("List of available maps:\n");
             for (Map m : Vars.maps.customMaps()) {
-                mapLijst.append("* " + m.name() + "/ " + m.width + " x " + m.height + "\n");
+                mapLijst.append("* ").append(m.name()).append("/ ").append(m.width).append(" x ").append(m.height).append("\n");
             }
-            mapLijst.append("Total number of maps: " + Vars.maps.customMaps().size);
+            mapLijst.append("Total number of maps: ").append(Vars.maps.customMaps().size);
             new MessageBuilder().appendCode("", mapLijst.toString()).send(event.getChannel());
 
-        } else if (event.getMessageContent().startsWith("..changemap")) {
+        } else if (event.getMessageContent().startsWith(prefix + "changemap")) {
             Role mapRole = mainData.discRoles.get("changeMap_role_id");
             if (mapRole == null) {
                 if (event.isPrivateMessage()) return;
@@ -135,7 +136,7 @@ public class mapCommands implements MessageCreateListener {
 //                }
 //            }*/
 
-        } else if (event.getMessageContent().equals("..uploadmap")) {
+        } else if (event.getMessageContent().equals(prefix + "uploadmap")) {
             Role mapConfigRole = mainData.discRoles.get("mapConfig_role_id");
             if (mapConfigRole == null) {
                 if (event.isPrivateMessage()) return;
@@ -182,7 +183,7 @@ public class mapCommands implements MessageCreateListener {
 //            Vars.maps.reload();
 //            event.getChannel().sendMessage(ml.get(0).getFileName() + " added succesfully!");
 
-        } else if (event.getMessageContent().startsWith("..removemap")) {
+        } else if (event.getMessageContent().startsWith(prefix + "removemap")) {
             Role mapConfigRole = mainData.discRoles.get("mapConfig_role_id");
             if (mapConfigRole == null) {
                 if (event.isPrivateMessage()) return;

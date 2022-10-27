@@ -15,12 +15,13 @@ import org.javacord.api.listener.message.MessageCreateListener;
 import disc.discordPlugin;
 
 import static disc.utilmethods.*;
+import static disc.discConstants.*;
 
 
 public class serverCommands implements MessageCreateListener {
     final String commandDisabled = "You tried, thats all that matters.";
 
-    private discordPlugin mainData;
+    private final discordPlugin mainData;
 
     public serverCommands(discordPlugin _data){
         this.mainData = _data;
@@ -31,7 +32,7 @@ public class serverCommands implements MessageCreateListener {
         String[] incoming_msg = event.getMessageContent().split("\\s+");
 
         switch (incoming_msg[0]){
-            case "..gameover":
+            case prefix + "gameover":
                 Role gameOverRole = mainData.discRoles.get("gameOver_role_id");
                 if (gameOverRole == null){
                     if (event.isPrivateMessage()) return;
@@ -45,7 +46,7 @@ public class serverCommands implements MessageCreateListener {
                 }
                 Events.fire(new GameOverEvent(Team.crux));
                 break;
-            case "..exit":
+            case prefix + "exit":
                 Role closeServerRole = mainData.discRoles.get("closeServer_role_id");
                 if (closeServerRole == null) {
                     if (event.isPrivateMessage()) return;

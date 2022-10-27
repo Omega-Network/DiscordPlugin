@@ -14,6 +14,7 @@ import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
 
 import static disc.utilmethods.hasPermission;
+import static disc.discConstants.*;
 
 
 public class comCommands implements MessageCreateListener {
@@ -28,12 +29,12 @@ public class comCommands implements MessageCreateListener {
         Role moderator = mainData.discRoles.get("role_id");
 
         switch (incoming_msg[0]){
-            case "..chat":
+            case prefix + "chat":
                 String[] msg2 = (event.getMessageContent().replace('\n', ' ')).split("\\s+", 2);
                 Call.sendMessage("[sky]" +event.getMessageAuthor().getName()+ " from discord >[] " + msg2[1].trim());
                 event.getChannel().sendMessage("Sent :white_check_mark:");
                 break;
-            case "..peepee":
+            case prefix + "peepee":
                 //ping command displaying ms
                 long time = System.currentTimeMillis();
                 event.getChannel().sendMessage("poopoo!").thenAcceptAsync(message -> {
@@ -41,7 +42,7 @@ public class comCommands implements MessageCreateListener {
                     message.edit("poopoo: " + ping + "ms");
                 });
                 break;
-            case "..modchat":
+            case prefix + "modchat":
                 if (moderator == null) {
                     if (event.isPrivateMessage()) return;
                     event.getChannel().sendMessage("You do not have permission to use this command");
@@ -53,7 +54,7 @@ public class comCommands implements MessageCreateListener {
                 event.getChannel().sendMessage(":white_check_mark:");
 
                 break;
-            case "..players":
+            case prefix + "players":
                 StringBuilder lijst = new StringBuilder();
                 StringBuilder admins = new StringBuilder();
                 lijst.append("Players: ").append(Groups.player.size()).append("\n");
@@ -69,7 +70,7 @@ public class comCommands implements MessageCreateListener {
                 }
                 new MessageBuilder().appendCode("", lijst.toString() + admins).send(event.getChannel());
                 break;
-            case "..info":
+            case prefix + "info":
                 try {
                     String lijst2 = "Map: " + Vars.state.map.name() + "\n" + "Author: " + Vars.state.map.author() + "\n" +
                             "Wave: " + Vars.state.wave + "\n" +
@@ -82,7 +83,7 @@ public class comCommands implements MessageCreateListener {
                     e.printStackTrace();
                 }
                 break;
-            case "..infores":
+            case prefix + "infores":
                 //event.getChannel().sendMessage("not implemented yet...");
                 if (!Vars.state.rules.waves){
                     event.getChannel().sendMessage("Only available when playing survivalmode!");
@@ -98,7 +99,7 @@ public class comCommands implements MessageCreateListener {
                 }
                 break;
                 //ban command
-            case "..ban":
+            case prefix + "ban":
                 if (moderator == null) {
                     if (event.isPrivateMessage()) return;
                     event.getChannel().sendMessage("You do not have permission to use this command");
@@ -118,18 +119,18 @@ public class comCommands implements MessageCreateListener {
                 player.con.kick("You have been banned from the server");
                 event.getChannel().sendMessage("Player banned");
                 break;
-            case "..help":
+            case prefix + "help":
                 event.getChannel().sendMessage("Commands: \n" +
-                        "```\n" +
-                        "..chat <message> - send a message to the server chat\n" +
-                        "..players - list all the players online\n" +
-                        "..info - get info about the server\n" +
-                        "..infores - get info about the resources in the core\n" +
-                        "..maps - list all maps on the server\n" +
-                        "..help - list all the commands\n" +
+                        "```\n" + prefix +
+                        "chat <message> - send a message to the server chat\n" + prefix +
+                        "players - list all the players online\n" + prefix +
+                        "info - get info about the server\n" + prefix +
+                        "infores - get info about the resources in the core\n" + prefix +
+                        "maps - list all maps on the server\n" + prefix +
+                        "help - list all the commands\n" + prefix +
                         "```");
                 break;
-            case "..cat":
+            case prefix + "cat":
                 event.getChannel().sendMessage("https://cataas.com/cat");
                 break;
             default:
