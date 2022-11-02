@@ -47,6 +47,7 @@ public class discordPlugin extends Plugin {
     //private JSONObject config;
     private final String totalPath;
     public String servername;
+    public static String prefix1;
 
 
     //register event handlers and create variables in the constructor
@@ -311,6 +312,13 @@ public class discordPlugin extends Plugin {
         }else{
             servername = "";
         }
+        if(obj.has("prefix")){
+            prefix1 = obj.getString("prefix");
+            discLog("Prefix is:" + prefix1);
+        }else{
+            discLog("Using default prefix!");
+            return;
+        }
 
         discLog("config loaded");
     }
@@ -329,6 +337,7 @@ public class discordPlugin extends Plugin {
 
         config.put("servername", "name of your server - can be empty");
 
+        config.put("prefix", "put your prefix");
         config.put("token", "put your token here");
 
         JSONObject channels = new JSONObject();

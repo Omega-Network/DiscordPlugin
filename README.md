@@ -10,7 +10,7 @@
 ## Omega Hub's implementation of the "abandoned" J-Vds Discord plugin for mindustry.
 
 ### Features
-*138+ compatible*
+*140+ compatible*
 
 ### Setup
 Make a bot and request a token. Make sure to give the bot some permissions.
@@ -23,6 +23,8 @@ I recommend to enable `Developer Mode` on discord. This is the easiest way to ge
 
 ### Disable commands
 You can disable some commands by removing or leaving some fields blank `""` in the config file.
+
+### The default prefix is .. remember to change it on settings.json if you're going to use this for multiple servers!
 
 #### Discord
 * `..chat <text...>` Send a message to the in-game chat

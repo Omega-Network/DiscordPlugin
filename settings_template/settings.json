@@ -1,5 +1,6 @@
 {
   "token" : "your token from discord",
+  "prefix" : "your prefix",
   "in-game":
     {
       "dchannel_id" : "id of the channel where /d messages will be posted",
