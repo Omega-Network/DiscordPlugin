@@ -49,6 +49,7 @@ You can disable some commands by removing or leaving some fields blank `""` in t
 * `..unadmin <player>` remove admin from a player
 * `..admins` list of admins
 * `..modchat <text...>` send a message as a administrator
+* `..modteamchat <team ID> <text...>` send a message to a team as administrator
 ### Most of this commands are still in development and may not work as intended.
 
 #### In-game

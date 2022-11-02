@@ -4,6 +4,7 @@ package disc.command;
 
 import disc.discordPlugin;
 import mindustry.Vars;
+import mindustry.game.Team;
 import mindustry.gen.Call;
 import mindustry.gen.Groups;
 import mindustry.gen.Player;
@@ -52,6 +53,23 @@ public class comCommands implements MessageCreateListener {
                 String[] msg3 = (event.getMessageContent().replace('\n', ' ')).split("\\s+", 2);
                 Call.sendMessage("[scarlet]Administrator >[] " + msg3[1].trim());
                 event.getChannel().sendMessage(":white_check_mark:");
+                break;
+            case "..modteamchat":
+                if (moderator == null) {
+                    if (event.isPrivateMessage()) return;
+                    event.getChannel().sendMessage("You do not have permission to use this command");
+                    return;
+                }
+                if (!hasPermission(moderator, event)) return;
+                String[] msg3 = (event.getMessageContent().replace('\n', ' ')).split("\\s+", 3);
+                try{
+                    Team t = Team.get(Integer.parseInt(msg3[1]));
+                    String msg = "[scarlet]T Administrator >[] " + msg3[2].trim();
+                    Groups.player.each(p -> p.team == t, p -> p.sendMessage(msg));
+                    event.getChannel().sendMessage(":white_check_mark:");
+                }catch(Exception e){
+                    event.getChannel().sendMessage(":boom: Your message did not send.");
+                }
 
                 break;
             case prefix + "players":
