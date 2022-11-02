@@ -91,10 +91,10 @@ public class discordPlugin extends Plugin {
             Events.on(EventType.PlayerConnect.class, event -> tc.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "*is Connecting*"));
         }
         if (tc2 != null) {
-            Events.on(EventType.PlayerBanEvent.class, event -> tc2.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "*has been **Banned**"));
-            Events.on(EventType.PlayerUnbanEvent.class, event -> tc2.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "*has been **Unbanned**"));
-            Events.on(EventType.PlayerIpBanEvent.class, event -> tc2.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.ip.replace('*', '+') + "** " + "*has been* **Banned***"));
-            Events.on(EventType.PlayerIpUnbanEvent.class, event -> tc2.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.ip.replace('*', '+') + "** " + "*has been* **Unbanned***"));
+            Events.on(EventType.PlayerBanEvent.class, event -> tc2.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "*has been* **Banned**"));
+            Events.on(EventType.PlayerUnbanEvent.class, event -> tc2.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.player.name.replace('*', '+') + "** " + "*has been* **Unbanned**"));
+            Events.on(EventType.PlayerIpBanEvent.class, event -> tc2.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.ip.replace('*', '+') + "** " + "*has been* **Banned**"));
+            Events.on(EventType.PlayerIpUnbanEvent.class, event -> tc2.sendMessage("<t:" + Instant.now().getEpochSecond() + ":R>" + " " + "**" + event.ip.replace('*', '+') + "** " + "*has been* **Unbanned**"));
         }
     }
 
@@ -324,7 +324,7 @@ public class discordPlugin extends Plugin {
         }
 
         JSONObject config = new JSONObject();
-        config.put("info", "more info available on: https://github.com/J-VdS/DiscordPlugin");
+        config.put("info", "more info available on: https://github.com/Omega-Network/DiscordPlugin");
         config.put("version", VERSION);
 
         config.put("servername", "name of your server - can be empty");

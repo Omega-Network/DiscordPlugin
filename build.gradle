@@ -1,6 +1,6 @@
 apply plugin: "java"
 
-version '1.0'
+version '2.0'
 
 sourceCompatibility = 1.8
 
@@ -11,15 +11,15 @@ repositories{
 
 ext{
     //the build number that this plugin is made for
-    mindustryVersion = 'v126'
+    mindustryVersion = 'v136'
 }
 
 dependencies{
     compileOnly "com.github.Anuken.Arc:arc-core:$mindustryVersion"
     compileOnly "com.github.Anuken.Mindustry:core:$mindustryVersion"
-    implementation group: 'org.json', name: 'json', version: '20220320'
+    implementation group: 'org.json', name: 'json', version: '20220924'
 
-    implementation 'org.javacord:javacord:3.5.0'
+    implementation 'org.javacord:javacord:3.6.0'
 }
 
 jar{

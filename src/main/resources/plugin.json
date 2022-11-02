@@ -2,6 +2,6 @@
   "name": "DiscordPlugin",
   "author": "Fishbuilder & Volas171",
   "main": "disc.discordPlugin",
-  "description": "interaction with discord",
-  "version": 2.2
+  "description": "interaction with discord and more",
+  "version": 2.3
 }
